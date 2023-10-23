@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>We'll Be Right Back</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<main>
+    <header>
+        <h1>Sorry, website in maintenance</h1>
+        <button id="run">But you can click here</button>
+    </header>
+    <section>
+        <span id="we">We</span>
+        <span id="ll">’ll</span><br/>
+        <span id="be">Be</span><br/>
+        <span id="right">Right</span><br/>
+        <span id="back">Back</span>
+    </section>
+</main>
+
+<script>
+    const audio = new Audio('./well-be-right-back.mp3');
+
+    const we = document.getElementById('we');
+    const ll = document.getElementById('ll');
+    const be = document.getElementById('be');
+    const right = document.getElementById('right');
+    const back = document.getElementById('back');
+    const words = [we, ll, be, right, back];
+
+    const button = document.getElementById('run');
+    button.addEventListener('click', () => {
+        words.forEach(el => el.classList.remove(el.id))
+        words.forEach(el => el.getAnimations().forEach((anim) => anim.cancel()))
+        audio.pause();
+
+        words.forEach(el => el.classList.add(el.id))
+        words.forEach(el => el.getAnimations().forEach((anim) => anim.play()))
+        audio.currentTime = 0;
+        audio.play();
+    })
+</script>
+</body>
+</html>
